@@ -32,6 +32,11 @@ namespace UITestNetCore.Helpers
                             INSTANCE = headless ? Browsers.GetRemoteChromeHeadless() : Browsers.GetRemoteChrome();
                         }
 
+                        if (execution.Equals("azure"))
+                        {
+                            INSTANCE = headless ? Browsers.GetChromeAzure() : Browsers.GetChromeAzure();
+                        }
+
                         break;
 
                     case "ie":

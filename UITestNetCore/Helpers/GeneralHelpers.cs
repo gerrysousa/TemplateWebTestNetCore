@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Diagnostics;
 using System.Collections.Specialized;
 using System.Text;
+using System.Reflection;
 
 namespace UITestNetCore.Helpers
 {
@@ -62,8 +63,9 @@ namespace UITestNetCore.Helpers
 
         public static string GetProjectPath()
         {
-            string pth = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
-
+            Console.WriteLine("Vai executar o path  -------------------------");
+            string pth = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            //string pth = "c:\\workspace\\Ambiente\\AgentDevpos01\\_work\\3\\s\\UITestNetCore\\bin\\Release\\netcoreapp2.1\\UITestNetCore.dll";
             string actualPath = pth.Substring(0, pth.LastIndexOf("bin"));
 
             return new Uri(actualPath).LocalPath;
@@ -72,6 +74,13 @@ namespace UITestNetCore.Helpers
         public static string GetProjectBinDebugPath()
         {
             return GetProjectPath() + "bin//Debug//"+ BuilderJson.ReturnParameterAppSettings("PATH_DEBUG_NET_CORE");
+        }
+
+        public static string GetProjectBinReleasePath()
+        {
+            string chromeDriverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            Console.WriteLine("Path>>>>>>>> " + chromeDriverPath);
+            return chromeDriverPath;            
         }
 
         [MethodImpl(MethodImplOptions.NoInlining)]

@@ -6,6 +6,8 @@ using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace UITestNetCore.Helpers
@@ -59,6 +61,14 @@ namespace UITestNetCore.Helpers
             chromeOptions.AddArgument("--headless");
 
             return new RemoteWebDriver(new Uri(seleniumHub), chromeOptions.ToCapabilities()); ;
+        }
+
+        public static IWebDriver GetChromeAzure()
+        {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("--headless");
+
+            return new ChromeDriver(GeneralHelpers.GetProjectBinReleasePath(), chromeOptions);
         }
         #endregion
 
