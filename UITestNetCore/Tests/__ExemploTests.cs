@@ -25,5 +25,16 @@ namespace UITestNetCore.Tests
 
             //Assert.IsTrue(true);
         }
+		
+		[Test, Category("teste_com_categoria")]
+        public void ExemploTeste2()
+        {
+            __ExemploPage exemploPage = new __ExemploPage();
+
+            exemploPage.EscreverTxtPesquisar("Teste Com Categoria");
+            exemploPage.ClicarBtnPesquisar();
+
+            //Assert.IsTrue(true);
+        }
     }
 }
